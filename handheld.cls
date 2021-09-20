@@ -1,5 +1,5 @@
 /// Description
-Class Handheld.Instructions Extends %Persistent
+Class Handheld.Instruction Extends %Persistent
 {
 
 /// Description
@@ -28,10 +28,13 @@ ClassMethod Import(dir As %String = "/usr/local/day8.txt") As %Status
     {
         set delim="^"
         set line = file.ReadLine()
-        write !, "Loop started"
+        write !, "We are within the iterative loop"
         write *32
         write line,!
         set lim = " "
+        set accumulator=0
+        set position=0
+
         
         // Uses $Piece to extract lines parts and assign them to an array called lines
         set lines(count)=$PIECE(line, delim)
@@ -45,7 +48,9 @@ ClassMethod Import(dir As %String = "/usr/local/day8.txt") As %Status
         write "Argument: ",instructions.argument ,!
         set sc = instructions.%Save()
         set countdown=$LENGTH(line,delim)
-        set count=$INCREMENT(count)        
+        set count=$INCREMENT(count)   
+
+       
     }
         write !,*32
         write !, "Double checking to see if the lines array is set"
@@ -69,7 +74,7 @@ ClassMethod Import(dir As %String = "/usr/local/day8.txt") As %Status
 
 Storage Default
 {
-<Data name="InstructionsDefaultData">
+<Data name="InstructionDefaultData">
 <Value name="1">
 <Value>%%CLASSNAME</Value>
 </Value>
@@ -80,11 +85,11 @@ Storage Default
 <Value>argument</Value>
 </Value>
 </Data>
-<DataLocation>^Handheld.InstructionsD</DataLocation>
-<DefaultData>InstructionsDefaultData</DefaultData>
-<IdLocation>^Handheld.InstructionsD</IdLocation>
-<IndexLocation>^Handheld.InstructionsI</IndexLocation>
-<StreamLocation>^Handheld.InstructionsS</StreamLocation>
+<DataLocation>^Handheld.InstructionD</DataLocation>
+<DefaultData>InstructionDefaultData</DefaultData>
+<IdLocation>^Handheld.InstructionD</IdLocation>
+<IndexLocation>^Handheld.InstructionI</IndexLocation>
+<StreamLocation>^Handheld.InstructionS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }
 
